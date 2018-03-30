@@ -1,0 +1,24 @@
+{
+  "name": "pwa-news-master",
+  "authors": [
+    "Aristotenes Vilar Filho <alallk@msn.com>"
+  ],
+  "description": "Curso de PWA do Virtus",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "moment": "momentjs#^2.21.0"
+  },
+  "devDependencies": {
+    "sass-flex-mixin": "^1.0.3"
+  }
+}

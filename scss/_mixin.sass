@@ -1,0 +1,69 @@
+/* ======== Cores */
+$preto: #000
+$branco: white
+$azul: #31b1e7
+$azul-claro: #cadbdc
+$laranja: orange
+$verde: #9ad15e
+$cinza-claro: #e1e1e1
+
+/* ======== Font */
+$light: 300
+$regular: 400
+$bold: 700
+
+/* ============= Tamanho das telas */
+$celularWidth: 440px
+$phabletWidth: 560px
+$tabletWidth: 991px
+$desktopWidth: 1200px
+
+$celular: max-width + $celularWidth
+$phablet: max-width + $phabletWidth
+$tablet: max-width + $tabletWidth
+$desktop: max-width + $desktopWidth
+
+=flexbox
+  display: -webkit-box
+  display: -webkit-flex
+  display: -moz-flex
+  display: -ms-flexbox
+  display: flex
+
+=gradient($angle,$gradient1, $gradient2)
+  background-color: $gradient2
+  background-image: -webkit-linear-gradient($angle, $gradient1, $gradient2)
+  background-image:    -moz-linear-gradient($angle, $gradient1, $gradient2)
+  background-image:     -ms-linear-gradient($angle, $gradient1, $gradient2)
+  background-image:      -o-linear-gradient($angle, $gradient1, $gradient2)
+  background-image:         linear-gradient($angle, $gradient1, $gradient2)
+
+/* ======== Outros */
+=transition($transition...)
+  -moz-transition:    all $transition linear
+  -o-transition:      all $transition linear
+  -webkit-transition: all $transition linear
+  transition:         all $transition linear
+
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+  -ms-border-radius: $radius
+  border-radius: $radius
+
+@function calculateRem($size)
+  $remSize: $size / 16px
+  @return $remSize * 1rem
+
+=font-size($size)
+  font-size: $size
+  font-size: calculateRem($size)
+
+=text-align-right
+  text-align: -webkit-right
+  text-align: right
+
+=opacity($opacity)
+  opacity: $opacity
+  $opacity-ie: $opacity * 100
+  filter: alpha(opacity=$opacity-ie)

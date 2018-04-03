@@ -16,9 +16,9 @@
   ],
   "dependencies": {
     "jquery": "^3.3.1",
-    "moment": "momentjs#^2.21.0"
-  },
-  "devDependencies": {
-    "sass-flex-mixin": "^1.0.3"
+    "moment": "momentjs#^2.21.0",
+    "font-awesome": "^5.0.9",
+    "breakpoint-sass": "^2.7.1",
+    "bootstrap": "^4.0.0"
   }
 }

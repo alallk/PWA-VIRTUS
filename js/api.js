@@ -1,5 +1,8 @@
 (function () {
     'use strict';
+    var readArticle_btn = 'Noticia Completa';
+    var imgStatic = window.location.protocol + "//" + window.location.host + '/images/item_sem_imagem.svg';
+    var imgLoadingStatic = window.location.protocol + "//" + window.location.host + '/images/tenor.gif';
 
     var category = null;
     var search = null;
@@ -65,7 +68,7 @@
 
     function getNewsHtml(article) {
 
-        var card = $('<div>').addClass('card col-12 col-sm-2 col-md-3 col-xl-3');
+        var card = $('<div>').addClass('card col-12 col-sm-6 col-md-4 col-xl-3');
 
         card = addImage(card);
         card = addBodyTitle(card);
@@ -74,14 +77,48 @@
         return card;
 
         function addImage(card) {
-            if (article.urlToImage) {
-                return card.append(
-                    $('<img>')
-                        .attr('src', article.urlToImage)
-                        .attr('alt', article.title)
-                        .addClass('card-img-top')
-                );
+            function loadImg(url, alt, img) {
+                function setDefaultImg(img){
+                    img.src = imgStatic;
+                }
+
+                $.ajax({
+                    type: 'GET',
+                    url:url,
+                    cache:false,
+                    xhrFields:{
+                        responseType: 'blob'
+                    },
+                    crossDomain: true,
+                    success: function(data){
+                        var objurl = window.URL.createObjectURL(data);
+
+                        img.src = objurl;
+                        img.alt = alt;
+
+                        $(img).on('error',function(){
+                            console.log('Não foi possível exibir a imagem.');
+                            setDefaultImg(img);
+                        });
+                    },
+                    error:function(){
+                        console.error("Não foi possivel carregar a imagem.");
+                        setDefaultImg(img);
+                    }
+                });
             }
+
+            var imgLocal = new Image();
+            imgLocal.src = imgLoadingStatic;
+            imgLocal.classList.add("card-body-img");
+
+            if(article.urlToImage){
+                loadImg(article.urlToImage, article.title, imgLocal)
+            }else{
+                imgLocal.src = imgLocal;
+                imgLocal.alt = article.title;
+            }
+            card.append(imgLocal);
             return card;
         }
 
@@ -91,7 +128,7 @@
                     .addClass('card-body')
                     .append($('<h5>').addClass('card-title').append(article.title))
                     .append($('<h6>').addClass('card-subtitle mb-2 text-muted')
-                        .append(moment(article.publishedAt).fromNow()))
+                    .append(moment(article.publishedAt).fromNow()))
                     .append($('<p>').addClass('card-text').append(article.description))
             );
         }
@@ -100,7 +137,7 @@
             return card.append(
                 $('<div>')
                     .addClass('card-body')
-                    .append($('<button>').append('Read Article').addClass('btn btn-link').attr('type', 'button'))
+                    .append($('<button>').append(readArticle_btn).addClass('btn btn-link').attr('type', 'button'))
                     .click(function () {
                         window.open(article.url, '_blank');
                     })

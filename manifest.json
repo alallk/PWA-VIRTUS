@@ -3,17 +3,17 @@
   "name": "PWA News",
   "icons": [
     {
-      "src": "assets/icon-72x72.png",
+      "src": "images/icon-72x72.png",
       "type": "image/png",
       "sizes": "72x72"
     },
     {
-      "src": "assets/icon-96x96.png",
+      "src": "images/icon-96x96.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "assets/icon-192x192.png",
+      "src": "images/icon-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     }

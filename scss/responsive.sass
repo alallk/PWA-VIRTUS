@@ -1,0 +1,130 @@
+@import plugins
+
+footer
+  padding: 2.5rem 0
+  color: #999
+  text-align: center
+  background-color: #f9f9f9
+  border-top: .05rem solid #e5e5e5
+
+#top-news
+  +flexbox
+  flex-direction: column
+
+img
+  max-width: 100%
+  height: auto
+
+.card-body-img
+  margin-top: 10px
+  border: $preto 1px solid
+  +border-radius(5px)
+
++breakpoint(max-width $celularWidth)
+  #top-news-title
+    +flexbox
+    flex-direction: column
+
+  .article-texts
+    order: 2
+
+  .article-img
+    order: 1
+
+  #top-news-description
+    display: none
+
+  .card-text
+    display: none
+
+  .card-subtitle
+    font-size: 1.2em
+    padding-top: 10px
+
+  .card-body-img
+    margin-top: 16px
+    border: gray
+    +border-radius(1px)
+
+  .article-texts
+    order: 1
+
+  .article-img
+    order: 2
+
+
++breakpoint($celularWidth $phabletWidth)
+  #top-news-title
+    +flexbox
+    flex-direction: column
+
+  #top-news-description
+    display: none
+
+  .card-text
+    display: none
+
+  .card-subtitle
+    float: right
+
+  .article-texts
+    order: 1
+
+  .article-img
+    order: 2
+
++breakpoint($phabletWidth $tabletWidth)
+  #top-news-title
+    +flexbox
+    flex-direction: column
+
+  .pwa-news-menu
+    order: 1
+
+  .pwa-news-title
+    order: 2
+
++breakpoint($tabletWidth $desktopWidth)
+  .article-img
+    display: flex
+    align-items: center
+    justify-content: center
+
+  .article-texts
+    order: 1
+
+  .article-img
+    order: 2
+
+  .pwa-news-menu
+    order: 1
+
+  .pwa-news-title
+    order: 2
+
++breakpoint($desktopWidth)
+  #top-news
+    +gradient(185deg,$preto, $cinza-claro)
+
+  #top-news-title
+    +flexbox
+    flex-direction: column
+
+  .article-img
+    display: flex
+    align-items: center
+    justify-content: center
+
+  .article-texts
+    order: 1
+
+  .article-img
+    order: 2
+
++breakpoint(max-width 575px)
+
+  .pwa-news-menu
+    order: 2
+
+  .pwa-news-title
+    order: 1

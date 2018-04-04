@@ -82,30 +82,19 @@
                     img.src = imgStatic;
                 }
 
-                $.ajax({
-                    type: 'GET',
-                    url:url,
-                    cache:false,
-                    xhrFields:{
-                        responseType: 'blob'
-                    },
-                    crossDomain: true,
-                    success: function(data){
-                        var objurl = window.URL.createObjectURL(data);
+                function isImageOk(imgElement) {
+                    return imgElement.complete && imgElement.naturalHeight !== 0;
+                }
 
-                        img.src = objurl;
-                        img.alt = alt;
-
-                        $(img).on('error',function(){
-                            console.log('Não foi possível exibir a imagem.');
-                            setDefaultImg(img);
-                        });
-                    },
-                    error:function(){
-                        console.error("Não foi possivel carregar a imagem.");
+                $(img).on('load',function (event){
+                    if(!isImageOk(img)){
+                        console.log("Deu erro no carregamento");
                         setDefaultImg(img);
                     }
                 });
+
+                img.src = url;
+                img.alt = alt;
             }
 
             var imgLocal = new Image();

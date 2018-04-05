@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    var VERSION = 3;
+    var VERSION = 1;
 
     var CACHE_REQUEST = 'pwa-news-req-v' + VERSION;
     var CACHE_SHELL = 'pwa-news-shell-v' + VERSION;
@@ -26,14 +26,14 @@
     });
 
     self.addEventListener('activate', event => {
-        const cacheWhitelist = [CACHE_REQUEST, CACHE_SHELL];
+        const cacheWhitelist = [CACHE_SHELL];
         event.waitUntil(
             caches.keys().then(function(cacheNames) {
                 return Promise.all(
-                    cacheNames.map(function(cacheName) {
-                        if (cacheWhitelist.indexOf(cacheName) === -1) {
-                            return caches.delete(cacheName);
-                        }
+                    cacheNames.filter(function(cacheName) {
+                        return cacheWhitelist.indexOf(cacheName) === -1
+                    }).map(function(cacheName) {
+                        return caches.delete(cacheName);
                     })
                 );
             })

@@ -88,7 +88,6 @@
 
                 $(img).on('load',function (event){
                     if(!isImageOk(img)){
-                        console.log("Deu erro no carregamento");
                         setDefaultImg(img);
                     }
                 });

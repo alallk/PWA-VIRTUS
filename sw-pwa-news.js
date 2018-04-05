@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    var VERSION = 2;
+    var VERSION = 3;
 
     var CACHE_REQUEST = 'pwa-news-req-v' + VERSION;
     var CACHE_SHELL = 'pwa-news-shell-v' + VERSION;
@@ -11,7 +11,6 @@
         '/bower_components/jquery/dist/jquery.min.js',
         '/bower_components/moment/moment.js',
         '/bower_components/bootstrap/dist/js/bootstrap.bundle.min.js',
-        '/js/configs.js',
         '/js/api.js',
         '/images/item_sem_imagem.svg',
         '/images/tenor.gif'
@@ -27,7 +26,7 @@
     });
 
     self.addEventListener('activate', event => {
-        const currentCaches = [CACHE_REQUEST, CACHE_SHELL];
+        const cacheWhitelist = [CACHE_REQUEST, CACHE_SHELL];
         event.waitUntil(
             caches.keys().then(function(cacheNames) {
                 return Promise.all(
@@ -45,25 +44,18 @@
         event.respondWith(
             caches.match(event.request)
                 .then(function(response) {
-                    if(event.request.url in ){
-
-                    }
 
                     // Cache hit - return response
                     if (response) {
                         return response;
                     }
 
-                    // IMPORTANT: Clone the request. A request is a stream and
-                    // can only be consumed once. Since we are consuming this
-                    // once by cache and once by the browser for fetch, we need
-                    // to clone the response.
                     var fetchRequest = event.request.clone();
 
                     return fetch(fetchRequest).then(
                         function(response) {
                             // Check if we received a valid response
-                            if(!response || response.status !== 200 || response.type !== 'basic') {
+                            if(!response || response.status !== 200) {
                                 return response;
                             }
 

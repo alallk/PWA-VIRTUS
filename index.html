@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <meta name="theme-color" content="#FFF">
     <title>PWA NEWS</title>
     <link rel="stylesheet" href="/css/responsive.min.css">
     <link rel="manifest" href="/manifest.json">
@@ -50,7 +51,7 @@
                 </p>
             </div>
             <div class="col-12 article-img">
-                <img id="top-news-image" src="#"/>
+                <img id="top-news-image"/>
             </div>
         </div>
         <div id="news" class="row"></div>
@@ -84,10 +85,16 @@
 <script src="/node_modules/moment/min/moment.min.js" charset="utf-8"></script>
 <script src="/node_modules/moment/min/locales.min.js" charset="utf-8"></script>
 <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+<script src="/node_modules/jquery-lazy/jquery.lazy.min.js" charset="utf-8"></script>
+<script src="/node_modules/jquery-lazy/jquery.lazy.plugins.min.js" charset="utf-8"></script>
 <script src="/js/api.js" charset="utf-8"></script>
 <script src="/js/bind.js"></script>
 <script src="/js/beforeInstallPrompt.js"></script>
-
+<script>
+    window.onload = function(){
+        $('.lazy').lazy();
+    };
+</script>
 
 </body>
 </html>

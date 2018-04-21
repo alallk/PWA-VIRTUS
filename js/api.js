@@ -27,7 +27,9 @@
         divNews.empty();
         setTopNews( data.articles[0]);
         for (var i = 1; i < data.articles.length; ++i) {
-            divNews.append(getNewsHtml(data.articles[i]));
+            if(data.articles[i]){
+                divNews.append(getNewsHtml(data.articles[i]));
+            }
         }
     }
 
@@ -35,8 +37,11 @@
         if(article) {
             $('#top-news-title').text(article.title);
             $('#top-news-description').text(article.description);
-            $('#top-news-image').attr('src', article.urlToImage).attr('alt', article.title);
-            $('#top-news-link').attr('href', article.url);
+            $('#top-news-image')
+                .attr('data-src', article.urlToImage)
+                .attr('alt', article.title)
+                .addClass('lazy');
+            $('#top-news-link').attr('href', article.url).attr('rel','noopener');
         }
     }
 
@@ -78,34 +83,19 @@
 
         function addImage(card) {
             function loadImg(url, alt, img) {
-                function setDefaultImg(img){
-                    img.src = imgStatic;
-                }
-
-                function isImageOk(imgElement) {
-                    return imgElement.complete && imgElement.naturalHeight !== 0;
-                }
-
-                $(img).on('load',function (event){
-                    if(!isImageOk(img)){
-                        setDefaultImg(img);
-                    }
-                });
-
-                img.src = url;
+                // img.src = url;
+                img.setAttribute("data-src", url);
                 img.alt = alt;
             }
 
             var imgLocal = new Image();
-            imgLocal.src = imgLoadingStatic;
-            imgLocal.classList.add("card-body-img");
 
-            if(article.urlToImage){
-                loadImg(article.urlToImage, article.title, imgLocal)
-            }else{
-                imgLocal.src = imgLocal;
-                imgLocal.alt = article.title;
-            }
+            imgLocal.classList.add("card-body-img");
+            imgLocal.classList.add("lazy");
+
+            var dUrl = article.urlToImage ? article.urlToImage : imgLoadingStatic;
+            loadImg(dUrl, article.title, imgLocal);
+
             card.append(imgLocal);
             return card;
         }
@@ -125,7 +115,8 @@
             return card.append(
                 $('<div>')
                     .addClass('card-body')
-                    .append($('<button>').append(readArticle_btn).addClass('btn btn-link').attr('type', 'button'))
+                    .append($('<button>').append(readArticle_btn).addClass('btn btn-link')
+                        .attr('rel','noopener'))
                     .click(function () {
                         window.open(article.url, '_blank');
                     })

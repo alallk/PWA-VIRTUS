@@ -2,7 +2,6 @@
     'use strict';
     var API = 'https://newsapi.org/v2/';
     var VERSION = 1;
-    var pubKey = 'BHC3zRxe5gfgcBjDZvt5LBhIv827PpN2paxfWVdYW8-KTxhdFBngLsCiPNeq5ekmLMQtbP40Y2-fGlJBI0dlp4s';
 
     var CACHE_REQUEST = 'pwa-news-req-v' + VERSION;
     var CACHE_SHELL = 'pwa-news-shell-v' + VERSION;
@@ -13,12 +12,22 @@
         '/node_modules/jquery/dist/jquery.min.js',
         '/node_modules/moment/min/moment.min.js',
         '/node_modules/moment/min/locales.min.js',
-        // '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
+        '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
+        '/node_modules/jquery-lazy/jquery.lazy.min.js',
+        '/node_modules/jquery-lazy/jquery.lazy.plugins.min.js',
         '/js/api.js',
         '/js/bind.js',
         '/images/item_sem_imagem.svg',
         '/images/tenor.gif',
         '/images/rss-icon.png',
+        '/images/icon-72x72.png',
+        '/images/icon-96x96.png',
+        '/images/icon-128x128.png',
+        '/images/icon-144x144.png',
+        '/images/icon-152x152.png',
+        '/images/icon-192x192.png',
+        '/images/icon-384x384.png',
+        '/images/icon-512x512.png',
         '/manifest.json'
     ];
 
@@ -82,20 +91,4 @@
             self.registration.showNotification(title, options)
         );
     });
-
-    //UTILS
-    function urlB64ToUint8Array(base64String) {
-        const padding = '='.repeat((4 - base64String.length % 4) % 4);
-        const base64 = (base64String + padding)
-            .replace(/\-/g, '+')
-            .replace(/_/g, '/');
-
-        const rawData = window.atob(base64);
-        const outputArray = new Uint8Array(rawData.length);
-
-        for (var i = 0; i < rawData.length; ++i) {
-            outputArray[i] = rawData.charCodeAt(i);
-        }
-        return outputArray;
-    }
 }());

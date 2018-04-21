@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
     <title>PWA NEWS</title>
     <link rel="stylesheet" href="/css/responsive.min.css">
     <link rel="manifest" href="/manifest.json">
@@ -59,24 +59,35 @@
 
 <footer>
     <p>PWA NEWS - Version: 0.1.1</p>
+    <div class="row">
+        <div class="col-6">
+            <p>Current effective network type is <b id="effectiveNetworkType">not available</b>.</p>
+            <p>Current max downlink speed is <b id="downlinkMax">not available</b>
+        </div>
+        <div class="col-6">
+            <p>Initial battery status was <b id="charging">unknown</b>, charging time <b id="chargingTime">unknown</b>, discharging time <b id="dischargingTime">unknown</b>, level <b id="level">unknown</b>.</p>
+
+            <div id="target"></div>
+        </div>
+    </div>
 </footer>
-
-<script src="/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
-<script src="/bower_components/moment/moment.js" charset="utf-8"></script>
-<script src="/bower_components/bootstrap/dist/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+<div class="fixed-container d-none">
+    <div class="col-12">
+        <div class="float-right">
+            <button class="btn-install-pwa-news">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+    </div>
+</div><!--end .fixed-container-->
+<script src="/node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+<script src="/node_modules/moment/min/moment.min.js" charset="utf-8"></script>
+<script src="/node_modules/moment/min/locales.min.js" charset="utf-8"></script>
+<script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" charset="utf-8"></script>
 <script src="/js/api.js" charset="utf-8"></script>
+<script src="/js/bind.js"></script>
+<script src="/js/beforeInstallPrompt.js"></script>
 
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('sw-pwa-news.js')
-                .then(function(registration) {
-                // Registration was successful
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            })
-        });
-    }
-</script>
 
 </body>
 </html>

@@ -2,15 +2,12 @@
   "name": "pwa-news",
   "version": "1.0.0",
   "description": "",
-  "main": "sw-pwa-news.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alallk/PWA-VIRTUS.git"
-  },
-  "author": "",
+  "repository": "git+https://github.com/alallk/PWA-VIRTUS.git",
+  "author": "Aristotenes Vilar Filho <alallk@msn.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alallk/PWA-VIRTUS/issues"
@@ -22,5 +19,12 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.2.1",
     "gulp-server-livereload": "^1.9.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "breakpoint-sass": "^2.7.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "*",
+    "moment": "^2.22.0"
   }
 }
